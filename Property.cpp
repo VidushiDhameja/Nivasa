@@ -1,7 +1,5 @@
 #include "Property.h"
 
-#include <iostream>
-
 Property::Property(int id,
                    const std::string& title,
                    const std::string& location,
@@ -24,11 +22,4 @@ double Property::getPrice() const { return price; }
 
 bool Property::matchesBudget(double minBudget, double maxBudget) const {
     return price >= minBudget && price <= maxBudget;
-}
-
-void Property::display() const {
-    std::cout << "ID: " << id << " | Title: " << title
-              << " | Location: " << location << " | Type: " << type
-              << " | Bedrooms: " << bedrooms << " | Bathrooms: " << bathrooms
-              << " | Area: " << area << " sq.ft | Price: Rs. " << price << "\n";
 }

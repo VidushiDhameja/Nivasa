@@ -1,7 +1,6 @@
 #include "Buyer.h"
 
 #include <algorithm>
-#include <iostream>
 
 Buyer::Buyer(const std::string& name,
              const std::string& preferredLocation,
@@ -75,18 +74,6 @@ double Buyer::getMaxBudget(const std::vector<Property>& catalog) const {
     return maximum;
 }
 
-void Buyer::displayResults(const std::vector<Property>& results) const {
-    if (results.empty()) {
-        std::cout << "No property matches the given requirements.\n";
-        return;
-    }
-
-    std::cout << "Matching properties for " << name << ":\n";
-    for (const auto& property : results) {
-        property.display();
-    }
-}
-
 void Buyer::addFavorite(int propertyId) {
     if (propertyId <= 0) return;
     auto it = std::find(favoritePropertyIds.begin(), favoritePropertyIds.end(), propertyId);
@@ -104,17 +91,4 @@ std::vector<Property> Buyer::getFavoriteProperties(const std::vector<Property>& 
         }
     }
     return favorites;
-}
-
-void Buyer::displayFavorites(const std::vector<Property>& catalog) const {
-    std::vector<Property> favorites = getFavoriteProperties(catalog);
-    if (favorites.empty()) {
-        std::cout << "No favorite properties saved yet.\n";
-        return;
-    }
-
-    std::cout << "Favorite properties:\n";
-    for (const auto& property : favorites) {
-        property.display();
-    }
 }

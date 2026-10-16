@@ -27,10 +27,8 @@ public:
     std::vector<Property> searchProperties(const std::vector<Property>& catalog) const;
     double getMinBudget(const std::vector<Property>& catalog) const;
     double getMaxBudget(const std::vector<Property>& catalog) const;
-    void displayResults(const std::vector<Property>& results) const;
     void addFavorite(int propertyId);
     std::vector<Property> getFavoriteProperties(const std::vector<Property>& catalog) const;
-    void displayFavorites(const std::vector<Property>& catalog) const;
 
 private:
     std::string name;

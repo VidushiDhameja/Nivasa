@@ -23,7 +23,6 @@ public:
     double getArea() const;
     double getPrice() const;
     bool matchesBudget(double minBudget, double maxBudget) const;
-    void display() const;
 
 private:
     int id;
