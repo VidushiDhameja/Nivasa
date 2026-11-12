@@ -1,36 +1,75 @@
 #pragma once
 
 #include <string>
+using namespace std;
 
-class Property {
+class Property 
+{
+    inline static int PropertyCount = 101;
 public:
-    // Constructor
-    Property(int id = 0,
-             const std::string& title = "",
-             const std::string& location = "",
-             const std::string& type = "",
-             int bedrooms = 0,
-             int bathrooms = 0,
-             double area = 0.0,
-             double price = 0.0);
+    enum class Status
+    {
+        Active , Unlisted, Sold
+    };
 
-    int getId() const;
-    std::string getTitle() const;
-    std::string getLocation() const;
-    std::string getType() const;
+     Property(
+        const string& propertyId,
+        const string& sellerId,
+        const string& title,
+        const string& location,
+        const string& type,
+        int bedrooms,
+        int bathrooms,
+        double area,
+        double price
+    );
+
+    string getPropertyId() const;
+    string getTitle() const;
+    string getLocation() const;
+    string getType() const;
     int getBedrooms() const;
     int getBathrooms() const;
     double getArea() const;
     double getPrice() const;
-    bool matchesBudget(double minBudget, double maxBudget) const;
+    Status getStatus() const;
+    string getStatusString() const;
 
-private:
-    int id;
-    std::string title;
-    std::string location;
-    std::string type;
+    bool matchesBudget(double minBudget, double maxBudget) const;
+    bool updateDetails(
+        const std::string& title,
+        const std::string& location,
+        const std::string& type,
+        int bedrooms,
+        int bathrooms,
+        double area,
+        double price
+    );
+
+    void markUnlisted();
+    void markActive();
+    void markSold();
+    
+    private:
+    string generatePropertyId();
+    string propertyId;
+    string sellerId;
+    string title;
+    string location;
+    string type;
     int bedrooms;
     int bathrooms;
     double area;
     double price;
+    Status status;
+
+    bool isValidDetails(
+        const std::string& title,
+        const std::string& location,
+        const std::string& type,
+        int bedrooms,
+        int bathrooms,
+        double area,
+        double price
+    ) const;
 };

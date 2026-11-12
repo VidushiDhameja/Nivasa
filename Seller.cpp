@@ -1,12 +1,13 @@
 #include "Seller.h"
+using namespace std;
 
-Seller::Seller(const std::string& name, const std::string& phone)
+Seller::Seller(const string& name, const string& phone)
     : name(name), phone(phone) {}
 
 void Seller::addProperty(const Property& property) {
     properties.push_back(property);
 }
 
-const std::vector<Property>& Seller::getProperties() const {
+const vector<Property>& Seller::getProperties() const {
     return properties;
 }
