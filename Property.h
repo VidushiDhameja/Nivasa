@@ -1,12 +1,12 @@
 #pragma once
 
+#include<vector>
 #include <string>
 using namespace std;
 
 class Property 
 {
-    inline static int PropertyCount = 101;
-public:
+    public:
     enum class Status
     {
         Active , Unlisted, Sold
@@ -34,22 +34,29 @@ public:
     double getPrice() const;
     Status getStatus() const;
     string getStatusString() const;
+    string getSellerId() const;
 
     bool matchesBudget(double minBudget, double maxBudget) const;
     bool updateDetails(
-        const std::string& title,
-        const std::string& location,
-        const std::string& type,
+        const string& title,
+        const string& location,
+        const string& type,
         int bedrooms,
         int bathrooms,
         double area,
         double price
     );
-
+    
     void markUnlisted();
     void markActive();
     void markSold();
     
+    //gallery method
+    bool addImagePath(const string& imagePath);     //add any image path
+    bool removeImagePath(const string& imagePath);  //remove 1 image path
+    const vector<string>& getImagePaths() const;    //get all the paths of image
+    void clearImagePaths();                         //clear all the image path
+
     private:
     string generatePropertyId();
     string propertyId;
@@ -62,14 +69,16 @@ public:
     double area;
     double price;
     Status status;
+    vector<string> imagePaths;
 
     bool isValidDetails(
-        const std::string& title,
-        const std::string& location,
-        const std::string& type,
+        const string& title,
+        const string& location,
+        const string& type,
         int bedrooms,
         int bathrooms,
         double area,
         double price
     ) const;
 };
+

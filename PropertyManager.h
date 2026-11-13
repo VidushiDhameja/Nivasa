@@ -40,7 +40,7 @@ class PropertyManager
         //VIEW PROPERTY
         vector<Property> viewAllProperties() const;
 
-        vector<Property> viewSellerProperties(string& sellerId) const;
+        vector<Property> viewSellerProperties(const string& sellerId) const;
 
         // UPDATE PROPERTY
         bool updateProperty( const string& sellerId, const string& propertyId, const string& title, const string& location, const string& type,
@@ -57,6 +57,12 @@ class PropertyManager
 
     // PERMANENT DELETE
     bool deleteProperty( const string& sellerId, const string& propertyId);
+
+    bool addPropertyImage( const std::string& sellerId, const std::string& propertyId, const std::string& sourcePath, std::string& error );
+
+    bool removePropertyImage(const std::string& sellerId,const std::string& propertyId,const std::string& imagePath,std::string& error);
+
+    std::vector<std::string> getPropertyImages(const std::string& propertyId) const;
 
     // SEARCH
     vector<Property> searchByKeyword( const string& keyword ) const;

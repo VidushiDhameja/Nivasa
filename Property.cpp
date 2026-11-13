@@ -1,6 +1,7 @@
 #include "Property.h"
 
 #include <stdexcept>
+#include <algorithm>
 #include <cmath>
 #include <utility>
 
@@ -60,14 +61,14 @@ double Property::getPrice() const
     return price;
 }
 
+string Property :: getSellerId() const
+{
+    return sellerId;
+}
+
 Property::Status Property::getStatus() const
 {
     return status;
-}
-
-string Property::generatePropertyId()
-{
-    return "PROP" + to_string(PropertyCount++);
 }
 
 bool Property::matchesBudget(double minBudget, double maxBudget) const
@@ -127,3 +128,47 @@ bool Property :: updateDetails( const string& title, const string& location, con
 
     return true;
 }
+
+// Add an image path to the property's gallery
+bool Property::addImagePath(const string& imagePath)
+{
+    // Empty paths are not allowed
+    if (imagePath.empty())
+        return false;
+
+    // Prevent duplicate image paths
+    auto it = find(imagePaths.begin(), imagePaths.end(), imagePath);
+
+    if (it != imagePaths.end())
+        return false;
+
+    imagePaths.push_back(imagePath);
+
+    return true;
+}
+
+// Remove a particular image path from the gallery
+bool Property::removeImagePath(const string& imagePath)
+{
+    auto it = find(imagePaths.begin(), imagePaths.end(), imagePath);
+
+    if (it == imagePaths.end())
+        return false;
+
+    imagePaths.erase(it);
+
+    return true;
+}
+
+// Return all image paths
+const vector<string>& Property::getImagePaths() const
+{
+    return imagePaths;
+}
+
+// Remove all image paths
+void Property::clearImagePaths()
+{
+    imagePaths.clear();
+}
+
